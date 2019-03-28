@@ -4,3 +4,6 @@
 [submodule "Catch2"]
 	path = Catch2
 	url = https://github.com/catchorg/Catch2
+[submodule "webots"]
+	path = webots
+	url = https://github.com/omichel/webots
