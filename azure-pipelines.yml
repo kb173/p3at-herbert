@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: $(TeamProject)_$(BuildID)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Rev:.r)
+
+resources:
+  repositories:
+  - repository: common
+    type: github
+    name: cinvesrob/Aria/tree/9a8886ebe2cb58248d3fff3747e398fe6b2d7c74
+
+# A trigger specifies what branches will cause a continuous integration build to run. 
+trigger:
+- master
+
+# A pull request trigger specifies what branches will cause a pull request build to run. 
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
+    - .gitignore
+    - .gitmodules
+
+pool:
+  vmImage: 'Ubuntu-16.04'
