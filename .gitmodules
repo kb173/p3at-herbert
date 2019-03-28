@@ -1,3 +1,6 @@
 [submodule "Aria"]
 	path = Aria
 	url = https://github.com/cinvesrob/Aria
+[submodule "Catch2"]
+	path = Catch2
+	url = https://github.com/catchorg/Catch2
