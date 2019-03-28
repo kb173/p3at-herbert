@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(p3at_herbert SHARED library.cpp library.h)
 
-add_executable (tests tests.cpp)
+add_executable(tests tests.cpp)
 
 include_directories("Aria/include")
 include_directories("Catch2/single_include/catch2")
