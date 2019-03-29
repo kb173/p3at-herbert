@@ -26,7 +26,7 @@ pool:
 steps:
   - script: cmake .
     displayName: 'Herbertcat build $(BuildID)'
-  - script: ls -1 $AGENT_BUILDDIRECTORY
+  - script: ls -R $AGENT_BUILDDIRECTORY
     displayName: 'UnitTesting build $(BuildID)'
 
 
