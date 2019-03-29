@@ -26,7 +26,7 @@ pool:
 steps:
   - script: cmake .
     displayName: 'Herbertcat build $(BuildID)'
-  - script: /home/vsts/work/1/s/tests
+  - script: cmake-build-debug/tests
     displayName: 'UnitTesting build $(BuildID)'
 
 
