@@ -42,5 +42,3 @@ steps:
     cd cmake-build-debug
     ./tests > test_results_$(BuildID).txt
   displayName: 'UnitTesting build $(BuildID)'
-
-
