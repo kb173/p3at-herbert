@@ -10,15 +10,15 @@ resources:
   - repository: common
     type: github
     name: cinvesrob/Aria/tree/9a8886ebe2cb58248d3fff3747e398fe6b2d7c74
-    endpoint: kb173
+    endpoint: Submodules
   - repository: common
     type: github
     name: catchorg/Catch2/tree/54089c4c8c657ffb13d8f3a1425403335af5ba4d
-    endpoint: kb173
+    endpoint: Submodules
   - repository: common
     type: github
     name: omichel/webots/tree/c99c027abbb4316d52abe46980398ca4c568772a
-    endpoint: kb173
+    endpoint: Submodules
 
 # A trigger specifies what branches will cause a continuous integration build to run. 
 trigger:
