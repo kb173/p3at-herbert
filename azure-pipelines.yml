@@ -24,7 +24,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-  - script: cmake .
+  - script: cmake . && cmake .
     displayName: 'Herbertcat build $(BuildID)'
   - script: ls -R $AGENT_BUILDDIRECTORY
     displayName: 'UnitTesting build $(BuildID)'
