@@ -1,44 +1,31 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-name: $(TeamProject)_$(BuildID)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Rev:.r)
-
-resources:
-  repositories:
-  - repository: common
-    type: github
-    name: cinvesrob/Aria/tree/9a8886ebe2cb58248d3fff3747e398fe6b2d7c74
-  - repository: common
-    type: github
-    name: catchorg/Catch2/tree/54089c4c8c657ffb13d8f3a1425403335af5ba4d
-  - repository: common
-    type: github
-    name: omichel/webots/tree/c99c027abbb4316d52abe46980398ca4c568772a
-
-# A trigger specifies what branches will cause a continuous integration build to run. 
-trigger:
-- master
-
-# A pull request trigger specifies what branches will cause a pull request build to run. 
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    exclude:
-    - README.md
-    - .gitignore
-    - .gitmodules
-
-pool:
-  vmImage: 'Ubuntu-16.04'
-
-steps:
-  - script: cmake .
-  displayName: 'Herbertcat build $(BuildID)'
-  - script: |
-    cd cmake-build-debug
-    ./tests > test_results_$(BuildID).txt
-  displayName: 'UnitTesting build $(BuildID)'
+--- 
+name: "$(TeamProject)_$(BuildID)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Rev:.r)"
+pool: 
+  vmImage: Ubuntu-16.04
+pr: 
+  branches: 
+    include: 
+      - master
+  paths: 
+    exclude: 
+      - README.md
+      - .gitignore
+      - .gitmodules
+resources: 
+  repositories: 
+    - name: cinvesrob/Aria/tree/9a8886ebe2cb58248d3fff3747e398fe6b2d7c74
+      repository: common
+      type: github
+    - name: catchorg/Catch2/tree/54089c4c8c657ffb13d8f3a1425403335af5ba4d
+      repository: common
+      type: github
+    - name: omichel/webots/tree/c99c027abbb4316d52abe46980398ca4c568772a
+      repository: common
+      type: github
+steps: 
+  - script: "cmake ."
+    displayName: "Herbertcat build $(BuildID)"
+  - script: "cd cmake-build-debug && ./tests > test_results_$(BuildID).txt"
+    displayName: "UnitTesting build $(BuildID)"
+trigger: 
+  - master
