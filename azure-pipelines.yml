@@ -5,9 +5,6 @@
 
 name: $(TeamProject)_$(BuildID)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Rev:.r)
 
-variables:
-
-
 resources:
   repositories:
   - repository: common
@@ -40,10 +37,10 @@ pool:
 
 steps:
   - script: cmake .
-  - displayName: 'Herbertcat build $(BuildID)'
+  displayName: 'Herbertcat build $(BuildID)'
   - script: |
     cd cmake-build-debug
     ./tests > test_results_$(BuildID).txt
-  - displayName: 'UnitTesting build $(BuildID)'
+  displayName: 'UnitTesting build $(BuildID)'
 
 
