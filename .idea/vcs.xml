@@ -3,5 +3,12 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Aria" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Catch2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/webots" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/webots/projects/robots/mobsya/thymio/controllers/thymio2_aseba/aseba" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/webots/projects/robots/mobsya/thymio/controllers/thymio2_aseba/aseba/clients/studio/plugins/ThymioBlockly/blockly" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/webots/projects/robots/mobsya/thymio/controllers/thymio2_aseba/aseba/tests/externals/Catch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/webots/projects/robots/mobsya/thymio/libraries/dashel-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/webots/src/glm" vcs="Git" />
   </component>
 </project>
