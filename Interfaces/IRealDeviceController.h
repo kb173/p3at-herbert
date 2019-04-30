@@ -24,7 +24,7 @@ public:
     /// This function is called when the connection with the real robot should stop.
     /// Typically a command stopping the real robot actuators should be sent just before stopping the connection.
 
-    virtual void stop ();
+    virtual void stop () = 0;
 
     /// This function is called when the connection with the real robot should stop.
     /// Typically a command stopping the real robot actuators should be sent just before stopping the connection.
@@ -35,7 +35,7 @@ public:
     /// This function is called to stop the actuators of the real robot.
     /// This is called when the user pressed the pause button of the simulator.
 
-    virtual void stopActuators ();
+    virtual void stopActuators () = 0;
 
     /// This function is called when the controller enters in the step loop.
     /// The aim of this function is to send the actuator commands and then to read the vaues of the enabled sensors.
