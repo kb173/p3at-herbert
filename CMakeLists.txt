@@ -3,7 +3,21 @@ project(p3at_herbert CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(p3at_herbert SHARED Interfaces/IRealDeviceController.h Interfaces/IRobot.h Interfaces/IP3AT.h library.cpp library.h Interfaces/IDevice.h Interfaces/IVirtualDeviceManager.cpp Interfaces/IVirtualDeviceManager.h Controller/RealDeviceControllerComposite.cpp Controller/RealDeviceControllerComposite.h)
+
+add_library(p3at_herbert SHARED
+        Controller/RealDeviceControllerComposite.cpp
+        Controller/RealDeviceControllerComposite.h
+        Interfaces/IRealDeviceController.h
+        Interfaces/IRobot.h
+        Interfaces/IP3AT.h
+        Interfaces/IDevice.h
+        Interfaces/IMotor.h
+        Interfaces/ISensor.h
+        Interfaces/IVirtualDeviceManager.h
+        Interfaces/IVirtualMotorController.h
+        Interfaces/IVirtualSensorController.h
+        library.cpp
+        library.h)
 
 add_executable(tests tests.cpp Controller/RealDeviceControllerComposite.cpp Controller/RealDeviceControllerComposite.h)
 
