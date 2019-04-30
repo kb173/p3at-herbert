@@ -7,16 +7,7 @@
 
 #include "controller/c/webots/types.h"
 
-///
-/// Every device has a deviceTag.
-///
 class IDevice {
-public:
-    ///getTag() returns the tag of the current object
-    virtual WbDeviceTag getTag() = 0;
-protected:
-    ///deviceTag is the identification number of a device given by webots
-    WbDeviceTag deviceTag;
 };
 
 
