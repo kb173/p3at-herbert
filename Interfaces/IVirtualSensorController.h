@@ -8,13 +8,9 @@
 #include "controller/c/webots/types.h"
 
 class IVirtualSensorController {
-    public:
+public:
     ///returns the last value measured by the specified distance sensor.
     virtual void wbr_distance_sensor_set_value(WbDeviceTag tag, double value) = 0;
-
-    protected:
-        IVirtualSensorController();
-        ~IVirtualSensorController();
 };
 
 
