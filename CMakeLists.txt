@@ -3,9 +3,9 @@ project(p3at_herbert CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(p3at_herbert SHARED Interfaces/IRealDeviceController.h Interfaces/IRobot.h Interfaces/IP3AT.h library.cpp library.h Interfaces/IDevice.h Interfaces/IVirtualDeviceManager.cpp Interfaces/IVirtualDeviceManager.h)
+add_library(p3at_herbert SHARED Interfaces/IRealDeviceController.h Interfaces/IRobot.h Interfaces/IP3AT.h library.cpp library.h Interfaces/IDevice.h Interfaces/IVirtualDeviceManager.cpp Interfaces/IVirtualDeviceManager.h Controller/RealDeviceControllerComposite.cpp Controller/RealDeviceControllerComposite.h)
 
-add_executable(tests tests.cpp)
+add_executable(tests tests.cpp Controller/RealDeviceControllerComposite.cpp Controller/RealDeviceControllerComposite.h)
 
 include_directories("webots/include")
 include_directories("Aria/include")
