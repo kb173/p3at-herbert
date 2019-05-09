@@ -25,7 +25,9 @@ add_library(p3at_herbert SHARED
         Devices/Motor.cpp
         Devices/Motor.h)
 
-add_executable(tests tests.cpp Controller/RealDeviceControllerComposite.cpp Controller/RealDeviceControllerComposite.h)
+add_executable(tests
+        tests.cpp
+        Controller/ControllerTests.cpp)
 
 include_directories("webots/include")
 include_directories("Aria/include")
