@@ -9,7 +9,7 @@
 /// Every motor has velocity and methods setVelocity and getVelocity
 ///
 
-class IMotor {
+class IMotor : IDevice {
 public:
     /// returns the velocity of the motor
     virtual double getVelocity() = 0;
