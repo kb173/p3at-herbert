@@ -26,7 +26,10 @@ public:
 
 private:
     ArRobot realRobot;
-    ArArgumentParser *argParser;
+    ArArgumentParser argParser;
+    bool connectionStopped;
+
+
 };
 
 

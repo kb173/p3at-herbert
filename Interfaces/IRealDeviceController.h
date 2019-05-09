@@ -26,8 +26,8 @@ public:
 
     virtual void stop () = 0;
 
-    /// This function is called when the connection with the real robot should stop.
-    /// Typically a command stopping the real robot actuators should be sent just before stopping the connection.
+    /// This function is called very often by libController to check the validity of the connection.
+    /// The value returned by this function should always match with the connection validity.
     /// @return hasFailed
 
     virtual bool hasFailed () = 0;
