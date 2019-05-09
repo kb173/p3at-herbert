@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by irena.ankerl on 30.04.2019.
 //
@@ -6,9 +8,12 @@
 #define P3AT_HERBERT_IVIRTUALMOTORCONTROLLER_H
 
 #include "controller/c/webots/types.h"
+#include "IVirtualDeviceManager.h"
 
 class IVirtualMotorController {
 public:
+    IVirtualMotorController(std::shared_ptr<IVirtualDeviceManager> dm) : deviceManager(std::move(dm)) {};
+
     ///specifies a new target position that the PID-controller will attempt to reach using the current velocity, acceleration and motor torque/force parameters. The specified position is expressed in radian (rad)
     virtual void (wbr_motor_set_position)(WbDeviceTag tag, double position) = 0;
 
@@ -17,6 +22,9 @@ public:
 
     ///specifies the velocity that a motor should reach while moving to the target position. The velocity is expressed in radian per second (rad/s)
     virtual void (wbr_motor_set_velocity)(WbDeviceTag tag, double velocity) = 0;
+
+protected:
+    std::shared_ptr<IVirtualDeviceManager> deviceManager;
 
 };
 
