@@ -5,7 +5,7 @@
 #ifndef P3AT_HERBERT_ARIACONTROLLER_H
 #define P3AT_HERBERT_ARIACONTROLLER_H
 
-#include <Aria.h>
+#include "Aria.h"
 #include "../Interfaces/IRealDeviceController.h"
 
 /// Has functions to actually set and apply the data to and from the real robot, does this in the tick function
