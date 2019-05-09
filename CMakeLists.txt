@@ -17,15 +17,17 @@ add_library(p3at_herbert SHARED
         Interfaces/IVirtualMotorController.h
         Interfaces/IVirtualSensorController.h
         library.cpp
-        Controller/VirtualMotorController.cpp
-        Controller/VirtualMotorController.h
         library.h
         Controller/AriaController.cpp
         Controller/AriaController.h
+        Controller/VirtualMotorController.cpp
+        Controller/VirtualMotorController.h
         Devices/Motor.cpp
         Devices/Motor.h Manager/VirtualDeviceManager.cpp Manager/VirtualDeviceManager.h)
 
-add_executable(tests tests.cpp Controller/RealDeviceControllerComposite.cpp Controller/RealDeviceControllerComposite.h)
+add_executable(tests
+        tests.cpp
+        Controller/ControllerTests.cpp)
 
 include_directories("webots/include")
 include_directories("Aria/include")
