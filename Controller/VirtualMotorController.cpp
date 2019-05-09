@@ -14,10 +14,7 @@ void VirtualMotorController::wbr_motor_set_acceleration(WbDeviceTag tag, double 
 }
 
 void VirtualMotorController::wbr_motor_set_velocity(WbDeviceTag tag, double velocity) {
-    std::shared_ptr<IDevice> device = deviceManager->getDeviceByTag(tag);
-    std::shared_ptr<IMotor> motor;
-
-    motor = std::dynamic_pointer_cast<IMotor>(device);
+    std::shared_ptr<IMotor> motor = std::dynamic_pointer_cast<IMotor>(deviceManager->getDeviceByTag(tag));
 
     if (motor != nullptr) {
         motor->setVelocity(velocity);

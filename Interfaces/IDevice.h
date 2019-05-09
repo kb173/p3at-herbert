@@ -8,6 +8,8 @@
 #include "controller/c/webots/types.h"
 
 class IDevice {
+public:
+    virtual ~IDevice() = default;
 };
 
 

@@ -8,8 +8,8 @@
 // TODO: implement empty functions
 
 bool AriaController::start(void *arg) {
-    Aria::init();
-
+    // FIXME: Causes a linker error
+    // Aria::init();
 
     return false;
 }

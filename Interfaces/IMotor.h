@@ -9,6 +9,8 @@
 /// Every motor has velocity and methods setVelocity and getVelocity
 ///
 
+#include "IDevice.h"
+
 class IMotor : IDevice {
 public:
     /// returns the velocity of the motor
@@ -28,6 +30,7 @@ public:
 
     /// sets the position of the motor
     virtual void setPosition(double pos) = 0;
+
 protected:
     /// stores the velocity of the motor
     double velocity;
