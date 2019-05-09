@@ -19,12 +19,11 @@ class IDevice;
 class IVirtualDeviceManager {
 public:
     /// returns the device associated to the given tag
+    /// returns nullptr if there is no associated device to the given tag
     virtual std::shared_ptr<IDevice> getDeviceByTag(WbDeviceTag tag) = 0;
 
     /// attaches device to the map
-    /// returns true if everything worked
-    /// returns false if not
-    virtual bool attachDeviceToMap(WbDeviceTag tag, std::shared_ptr<IDevice> device) = 0;
+    virtual void attachDeviceToMap(WbDeviceTag tag, std::shared_ptr<IDevice> device) = 0;
 protected:
     /// collection of all the devices associated with their tags
     std::map<WbDeviceTag,std::shared_ptr<IDevice>> devices;
