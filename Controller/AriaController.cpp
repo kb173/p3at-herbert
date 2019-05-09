@@ -3,7 +3,6 @@
 //
 
 #include "AriaController.h"
-#include "Aria.h"
 
 // TODO: implement empty functions
 // TODO: Test driven development requires tests :-)
