@@ -19,7 +19,12 @@ add_library(p3at_herbert SHARED
         library.cpp
         library.h
         Controller/AriaController.cpp
-        Controller/AriaController.h)
+        Controller/AriaController.h
+        Controller/VirtualMotorController.cpp
+        Controller/VirtualMotorController.h
+        Devices/Motor.cpp
+        Devices/Motor.h Manager/VirtualDeviceManager.cpp Manager/VirtualDeviceManager.h)
+
 
 add_executable(tests tests.cpp Controller/RealDeviceControllerComposite.cpp Controller/RealDeviceControllerComposite.h)
 

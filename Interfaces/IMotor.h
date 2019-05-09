@@ -9,18 +9,32 @@
 /// Every motor has velocity and methods setVelocity and getVelocity
 ///
 
-class IMotor {
+class IMotor : IDevice {
 public:
     /// returns the velocity of the motor
     virtual double getVelocity() = 0;
 
     /// sets the velocity of the motor
-    /// returns true if everything worked
-    /// returns false if not
-    virtual bool setVelocity(double vel) = 0;
+    virtual void setVelocity(double vel) = 0;
+
+    /// returns the acceleration of the motor
+    virtual double getAcceleration() = 0;
+
+    /// sets the acceleration of the motor
+    virtual void setAcceleration(double acc) = 0;
+
+    /// returns the position of the motor
+    virtual double getPosition() = 0;
+
+    /// sets the position of the motor
+    virtual void setPosition(double pos) = 0;
 protected:
     /// stores the velocity of the motor
     double velocity;
+    /// stores the acceleration of the motor
+    double acceleration;
+    /// stores the position of the motor
+    double position;
 };
 
 

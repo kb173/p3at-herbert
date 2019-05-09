@@ -9,7 +9,7 @@
 /// Every sensor has a value and methods setValue and getValue
 ///
 
-class ISensor {
+class ISensor : IDevice{
 public:
     /// returns the value of the sensor
     virtual double getValue() = 0;
