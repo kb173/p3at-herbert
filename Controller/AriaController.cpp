@@ -6,6 +6,7 @@
 #include "Aria.h"
 
 // TODO: implement empty functions
+// TODO: Test driven development requires tests :-)
 
 bool AriaController::start(void *arg) {
     Aria::init();
@@ -57,15 +58,31 @@ bool AriaController::start(void *arg) {
 void AriaController::stop() {
     ArLog::log(ArLog::Normal, "Ending robot thread...");
     realRobot.stopRunning();
+    connectionStopped = true;
+
+    // wait for the thread to stop
+    realRobot.waitForRunExit();
+
+    ArLog::log(ArLog::Normal, "Exiting.");
+    Aria::exit();
 }
 
 bool AriaController::hasFailed() {
     return connectionStopped;
 }
 
-void AriaController::stopActuators() {
+// TODO: Find out what happens when we resume
 
+void AriaController::stopActuators() {
+    //realRobot.setVel(0);
+    //realRobot.set
+
+    // might well be that stop doesnt show the wanted results.
+    // if it doesn't we should set the velocity and possible other properties to zero
+    realRobot.stop();
 }
+
+// TODO: gets the values from our virtual p3at struct and sets the values for the actuators and gets them from the sensors
 
 int AriaController::robotStep(int period) {
     return 0;
