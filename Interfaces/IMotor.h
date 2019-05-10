@@ -11,7 +11,7 @@
 
 #include "IDevice.h"
 
-class IMotor : IDevice {
+class IMotor : public IDevice {
 public:
     /// returns the velocity of the motor
     virtual double getVelocity() = 0;
@@ -30,6 +30,8 @@ public:
 
     /// sets the position of the motor
     virtual void setPosition(double pos) = 0;
+
+    virtual ~IMotor() = default;
 
 protected:
     /// stores the velocity of the motor

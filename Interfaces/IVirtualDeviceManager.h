@@ -24,6 +24,8 @@ public:
 
     /// attaches device to the map
     virtual void attachDeviceToMap(WbDeviceTag tag, std::shared_ptr<IDevice> device) = 0;
+
+    virtual ~IVirtualDeviceManager() = default;
 protected:
     /// collection of all the devices associated with their tags
     std::map<WbDeviceTag,std::shared_ptr<IDevice>> devices;

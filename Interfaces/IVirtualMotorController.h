@@ -23,6 +23,8 @@ public:
     ///specifies the velocity that a motor should reach while moving to the target position. The velocity is expressed in radian per second (rad/s)
     virtual void (wbr_motor_set_velocity)(WbDeviceTag tag, double velocity) = 0;
 
+    virtual ~IVirtualMotorController() = default;
+
 protected:
     std::shared_ptr<IVirtualDeviceManager> deviceManager;
 

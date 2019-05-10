@@ -7,7 +7,7 @@
 
 #include "../Interfaces/IVirtualDeviceManager.h"
 
-class VirtualDeviceManager : IVirtualDeviceManager{
+class VirtualDeviceManager : public IVirtualDeviceManager{
 public:
     /// returns the device associated to the given tag
     /// returns nullptr if there is no associated device to the given tag
