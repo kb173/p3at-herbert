@@ -26,6 +26,16 @@ SCENARIO("P3AT", "[robot, p3at]") {
                 REQUIRE(deviceManager->getDeviceByTag(20) != nullptr);
                 REQUIRE(deviceManager->getDeviceByTag(27) != nullptr);
             }
+
+            THEN("The DeviceManager and the P3AT should point to the same devices") {
+                auto deviceManagerDevice = deviceManager->getDeviceByTag(1);
+                auto robotDevice = p3at->getRightWheels();
+                REQUIRE(deviceManagerDevice == robotDevice);
+
+                deviceManagerDevice = deviceManager->getDeviceByTag(10);
+                robotDevice = p3at->getFrontSonarArray().front();
+                REQUIRE(deviceManagerDevice == robotDevice);
+            }
         }
     }
 }
