@@ -15,6 +15,9 @@ public:
 
     /// attaches device to the map
     void attachDeviceToMap(WbDeviceTag tag, std::shared_ptr<IDevice> device);
+
+    /// returns the complete map of the devices
+    std::map<WbDeviceTag,std::shared_ptr<IDevice>> getDevices();
 protected:
     /// collection of all the devices associated with their tags
     std::map<WbDeviceTag,std::shared_ptr<IDevice>> devices;
