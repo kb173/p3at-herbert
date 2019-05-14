@@ -5,7 +5,7 @@
 #ifndef P3AT_HERBERT_IVIRTUALDEVICEMANAGER_H
 #define P3AT_HERBERT_IVIRTUALDEVICEMANAGER_H
 
-#include "controller/c/webots/types.h"
+#include <webots/types.h>
 #include <memory>
 #include <map>
 

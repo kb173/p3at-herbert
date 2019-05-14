@@ -7,7 +7,7 @@
 #ifndef P3AT_HERBERT_IVIRTUALMOTORCONTROLLER_H
 #define P3AT_HERBERT_IVIRTUALMOTORCONTROLLER_H
 
-#include "controller/c/webots/types.h"
+#include <webots/types.h>
 #include "IVirtualDeviceManager.h"
 
 class IVirtualMotorController {
