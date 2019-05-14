@@ -22,24 +22,24 @@ public:
 
     std::shared_ptr<IDevice> getRightWheels() override;
 
-    std::list<std::shared_ptr<IDevice>> getFrontSonarArray() override;
+    std::vector<std::shared_ptr<IDevice>> getFrontSonarArray() override;
 
-    std::list<std::shared_ptr<IDevice>> getBackSonarArray() override;
+    std::vector<std::shared_ptr<IDevice>> getBackSonarArray() override;
 
 private:
-    static void insertEightSensors(std::list<std::shared_ptr<IDevice>> &);
+    static void insertEightSensors(std::vector<std::shared_ptr<IDevice>> &);
 
     static void
-    insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager, const std::list<std::shared_ptr<IDevice>> &,
+    insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager, const std::vector<std::shared_ptr<IDevice>> &,
               unsigned short);
 
     std::shared_ptr<IDevice> leftWheels;
 
     std::shared_ptr<IDevice> rightWheels;
 
-    std::list<std::shared_ptr<IDevice>> frontSonarArray;
+    std::vector<std::shared_ptr<IDevice>> frontSonarArray;
 
-    std::list<std::shared_ptr<IDevice>> backSonarArray;
+    std::vector<std::shared_ptr<IDevice>> backSonarArray;
 
 };
 
