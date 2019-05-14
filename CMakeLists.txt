@@ -24,12 +24,19 @@ add_library(p3at_herbert SHARED
         Controller/VirtualMotorController.cpp
         Controller/VirtualMotorController.h
         Devices/Motor.cpp
-        Devices/Motor.h Manager/VirtualDeviceManager.cpp
+        Devices/Motor.h
+        Manager/VirtualDeviceManager.cpp
         Manager/VirtualDeviceManager.h
         Robots/P3AT.cpp
         Robots/P3AT.h
         Devices/Sensor.cpp
-        Devices/Sensor.h Controller/VirtualSensorController.cpp Controller/VirtualSensorController.h)
+        Devices/Sensor.h
+        Controller/VirtualSensorController.cpp
+        Controller/VirtualSensorController.h
+        Tools/Converter.cpp
+        Tools/Converter.h
+        Interfaces/IConverter.h)
+
 
 function (DisableCompilingPlatformSpecificSources file_list)
     foreach(file ${file_list})
@@ -57,7 +64,7 @@ add_executable(tests
         Controller/ControllerTests.cpp
         Devices/DeviceTests.cpp
         Robots/RobotTests.cpp
-        Manager/ManagerTest.cpp)
+        Manager/ManagerTest.cpp Tools/ToolTests.cpp)
 
 target_link_libraries(tests ${CMAKE_DL_LIBS})
 

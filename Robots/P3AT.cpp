@@ -32,15 +32,15 @@ std::shared_ptr<IDevice> P3AT::getRightWheels() {
     return rightWheels;
 }
 
-std::list<std::shared_ptr<IDevice>> P3AT::getFrontSonarArray() {
+std::vector<std::shared_ptr<IDevice>> P3AT::getFrontSonarArray() {
     return frontSonarArray;
 }
 
-std::list<std::shared_ptr<IDevice>> P3AT::getBackSonarArray() {
+std::vector<std::shared_ptr<IDevice>> P3AT::getBackSonarArray() {
     return backSonarArray;
 }
 
-void P3AT::insertEightSensors(std::list<std::shared_ptr<IDevice>> &sonarArray) {
+void P3AT::insertEightSensors(std::vector<std::shared_ptr<IDevice>> &sonarArray) {
     for (int i = 0; i < 8; i++) {
         auto sensor = std::dynamic_pointer_cast<IDevice>
                 (std::make_shared<Sensor>(Sensor()));
@@ -49,7 +49,7 @@ void P3AT::insertEightSensors(std::list<std::shared_ptr<IDevice>> &sonarArray) {
 }
 
 void P3AT::insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager,
-                     const std::list<std::shared_ptr<IDevice>> &list, unsigned short startTag) {
+                     const std::vector<std::shared_ptr<IDevice>> &list, unsigned short startTag) {
     unsigned short index = startTag;
 
     for (const auto &device : list) {
