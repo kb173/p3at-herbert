@@ -94,40 +94,37 @@ int AriaController::robotStep(int period) {
     auto rightWheelsPtr = virtualRobot->getRightWheels();
     std::shared_ptr<IMotor> rightWheels = std::dynamic_pointer_cast<IMotor>(rightWheelsPtr);
     auto backSonarArrayPtr = virtualRobot->getBackSonarArray();
-    /*
-    std::shared_ptr<ISensor> backSonarArray = std::dynamic_pointer_cast<ISensor>(backSonarArrayPtr);
     auto frontSonarArrayPtr = virtualRobot->getFrontSonarArray();
-    std::shared_ptr<std::list<ISensor>> frontSonarArray = std::dynamic_pointer_cast<ISensor>(frontSonarArrayPtr);*/
 
 
     // TODO: check the transission from WeBots velocity to ARIA velocity
+    // TODO: Use tool to calculatre right velocity
     double velocityLeft = leftWheels->getVelocity();
     double velocityRight = rightWheels->getVelocity();
 
-    if (velocityLeft == velocityRight) {
-        std::ostringstream oss;
+    if(realRobot.areMotorsEnabled()) {
+        std::ostringstream oss, oss2;
         oss << velocityLeft;
-        std::string logMessage = "Driving in a straight line with velocity of " + oss.str() + "m/s";
+        oss2 << velocityRight;
+        std::string logMessage = "Motors running line with velocity of " + oss.str() + "m/s on left wheel"
+                                                    "and velocity of " + oss2.str() + "m/s on right wheel";
         ArLog::log(ArLog::Normal, logMessage.c_str());
 
-
-        realRobot.setVel(velocityLeft);
-    } else {
-
+        realRobot.setVel2(velocityLeft, velocityRight);
     }
 
+
     if (realRobot.areSonarsEnabled()) {
+        // In the order of right to left having frontal vision on the robot
         std::map<int, ArSonarMTX *> *sonarArray = realRobot.getSonarMap();
     }
 
-    double secondsSinceStart = difftime( time(0), start);
-
 
     // The robot should at least wait period seconds and return deltatime if exceeds
+    double secondsSinceStart = difftime( time(0), start);
     while(secondsSinceStart < period) {
         secondsSinceStart = difftime(time(0), start);
     }
-
     int deltaTime = (int) (secondsSinceStart - periodAsDouble) * 1000;
 
     return deltaTime;
