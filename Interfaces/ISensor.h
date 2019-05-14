@@ -17,9 +17,7 @@ public:
     virtual double getValue() = 0;
 
     /// sets the value of the sensor
-    /// returns true if everything worked
-    /// returns false if not
-    virtual bool setValue(double val) = 0;
+    virtual void setValue(double val) = 0;
 protected:
     /// stores the value of the sensor
     double value;

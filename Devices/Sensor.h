@@ -10,9 +10,11 @@
 
 class Sensor : public ISensor {
 public:
+    Sensor();
+
     double getValue() override;
 
-    bool setValue(double val) override;
+    void setValue(double val) override;
 
 private:
     double value{};

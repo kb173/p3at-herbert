@@ -4,12 +4,14 @@
 
 #include "Sensor.h"
 
+Sensor::Sensor() {
+    value = 0;
+}
+
 double Sensor::getValue() {
     return value;
 }
 
-bool Sensor::setValue(double val) {
+void Sensor::setValue(double val) {
     value = val;
-
-    return true; // TODO: When to return false?
 }

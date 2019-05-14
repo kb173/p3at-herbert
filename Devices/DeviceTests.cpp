@@ -3,11 +3,13 @@
 //
 
 #include "catch.hpp"
+#include "../Interfaces/ISensor.h"
+#include "Sensor.h"
 #include "../Interfaces/IMotor.h"
 #include "Motor.h"
 
 SCENARIO("Motor") {
-    GIVEN("A Motor") {
+    GIVEN("A motor") {
 
         auto motor = std::dynamic_pointer_cast<IMotor>
             (std::make_shared<Motor>(Motor()));
@@ -42,6 +44,29 @@ SCENARIO("Motor") {
 
             THEN("The motor should have that acceleration") {
                 REQUIRE(motor->getAcceleration() == 4.2);
+            }
+        }
+    }
+}
+
+SCENARIO("Sensor") {
+    GIVEN("A sensor") {
+
+        auto sensor = std::dynamic_pointer_cast<ISensor>
+                (std::make_shared<Sensor>(Sensor()));
+
+        WHEN("Sensor is constructed") {
+
+            THEN("The sensor value should be 0") {
+                REQUIRE(sensor->getValue() == 0);
+            }
+        }
+
+        WHEN("Setting the value of the sensor") {
+            sensor->setValue(3.14);
+
+            THEN("The sensor should have that value") {
+                REQUIRE(sensor->getValue() == 3.14);
             }
         }
     }
