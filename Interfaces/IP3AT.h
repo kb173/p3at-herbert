@@ -11,6 +11,7 @@
 #include "IDevice.h"
 #include "IMotor.h"
 #include "ISensor.h"
+#include <vector>
 
 class IP3AT : public IRobot {
 public:
@@ -25,12 +26,12 @@ public:
     /// Returns all sonar devices in the front sonar array of the robot.
     /// Viewed from the front, they are laid out like this: 7 6 5 4 3 2 1 0
     /// @return A list of all sensors from right to left, which are of type ISensor (returned as shared pointers to IDevices)
-    virtual std::list<std::shared_ptr<IDevice>> getFrontSonarArray() = 0;
+    virtual std::vector<std::shared_ptr<IDevice>> getFrontSonarArray() = 0;
 
     /// Returns all sonar devices in the back sonar array of the robot.
     /// Viewed from the front, they are laid out like this: 7 6 5 4 3 2 1 0
     /// @return A list of all sensors from right to left, which are of type ISensor (returned as shared pointers to IDevices)
-    virtual std::list<std::shared_ptr<IDevice>> getBackSonarArray() = 0;
+    virtual std::vector<std::shared_ptr<IDevice>> getBackSonarArray() = 0;
 };
 
 #endif //P3AT_HERBERT_IP3AT_H

@@ -29,8 +29,6 @@ public:
 
     /// sets the position of the motor
     void setPosition(double pos);
-
-    ~Motor() = default;
 };
 
 
