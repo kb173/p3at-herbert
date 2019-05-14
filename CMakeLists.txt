@@ -29,7 +29,7 @@ add_library(p3at_herbert SHARED
         Robots/P3AT.cpp
         Robots/P3AT.h
         Devices/Sensor.cpp
-        Devices/Sensor.h )
+        Devices/Sensor.h Controller/VirtualSensorController.cpp Controller/VirtualSensorController.h)
 
 function (DisableCompilingPlatformSpecificSources file_list)
     foreach(file ${file_list})

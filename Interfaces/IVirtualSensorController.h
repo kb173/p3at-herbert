@@ -6,11 +6,19 @@
 #define P3AT_HERBERT_IVIRTUALSENSORCONTROLLER_H
 
 #include "controller/c/webots/types.h"
+#include "IVirtualDeviceManager.h"
 
 class IVirtualSensorController {
 public:
-    ///returns the last value measured by the specified distance sensor.
-    virtual void wbr_distance_sensor_set_value(WbDeviceTag tag, double value) = 0;
+    IVirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : deviceManager(std::move(dm)) {};
+
+    ///sets all sensor values in webots
+    virtual void setAllSensorValues() = 0;
+
+    virtual ~IVirtualSensorController() = default;
+
+protected:
+    std::shared_ptr<IVirtualDeviceManager> deviceManager;
 };
 
 
