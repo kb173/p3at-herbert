@@ -3,6 +3,7 @@
 //
 
 #include "AriaController.h"
+#include "../Interfaces/IMotor.h"
 
 // TODO: implement empty functions
 // TODO: Test driven development requires tests :-)
@@ -15,15 +16,15 @@ bool AriaController::start(void *arg) {
     ArArgumentBuilder ab = ArArgumentBuilder();
     ab.add((const char*)arg);
 
-    argParser = ArArgumentParser(&ab);
-    argParser.loadDefaultArguments();
+    *argParser = ArArgumentParser(&ab);
+    argParser->loadDefaultArguments();
 
-    ArRobotConnector robotConnector(&argParser, &realRobot);
+    ArRobotConnector robotConnector(argParser, &realRobot);
 
     if(!robotConnector.connectRobot()) {
         ArLog::log(ArLog::Normal, "Could not connect to robot");
 
-        if(argParser.checkHelpAndWarnUnparsed()) {
+        if(argParser->checkHelpAndWarnUnparsed()) {
             Aria::logOptions();
             Aria::exit(1);
 
@@ -84,5 +85,42 @@ void AriaController::stopActuators() {
 // TODO: gets the values from our virtual p3at struct and sets the values for the actuators and gets them from the sensors
 
 int AriaController::robotStep(int period) {
-    return 0;
+    time_t start = time(0);
+
+    auto leftWheels = (*virtualRobot).getLeftWheels();
+    auto rightWheels = (*virtualRobot).getRightWheels();
+    auto backSonarArray = (*virtualRobot).getBackSonarArray();
+    auto frontSonarArray = (*virtualRobot).getFrontSonarArray();
+
+
+    // TODO: check the transission from WeBots velocity to ARIA velocity
+    double velocityLeft = (*leftWheels).getVelocity();
+    double velocityRight = (*rightWheels).getVelocity();
+
+    if (velocityLeft == velocityRight) {
+        realRobot.setVel(velocityLeft);
+    } else {
+
+    }
+
+    if (realRobot.areSonarsEnabled()) {
+        std::map<int, ArSonarMTX *> *sonarArray = realRobot.getSonarMap();
+    }
+
+    double secondsSinceStart = difftime( time(0), start);
+
+
+    // The robot should at least wait period seconds and return deltatime if exceeds
+    while(secondsSinceStart < period) {
+        secondsSinceStart = difftime(time(0), start);
+    }
+
+    int deltaTime = secondsSinceStart - period;
+
+    return deltaTime;
 }
+
+AriaController::AriaController(const std::shared_ptr<IP3AT> &virtualRobot) : virtualRobot(virtualRobot) {
+    this->virtualRobot = std::make_shared<IP3AT>(virtualRobot);
+}
+
