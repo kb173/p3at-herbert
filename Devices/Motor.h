@@ -9,6 +9,9 @@
 
 class Motor : public IMotor{
 public:
+    /// constructor, sets all values 0
+    Motor();
+
     /// returns the velocity of the motor
     double getVelocity();
 

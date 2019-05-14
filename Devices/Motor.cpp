@@ -4,6 +4,12 @@
 
 #include "Motor.h"
 
+Motor::Motor()
+{
+    velocity = 0;
+    acceleration = 0;
+    position = 0;
+}
 
 double Motor::getVelocity()
 {
