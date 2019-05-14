@@ -2,6 +2,7 @@
 // Created by mathias on 30.04.19.
 //
 
+#include <sstream>
 #include "AriaController.h"
 #include "../Interfaces/IMotor.h"
 
@@ -86,18 +87,30 @@ void AriaController::stopActuators() {
 
 int AriaController::robotStep(int period) {
     time_t start = time(0);
+    double periodAsDouble = ((double) period) / 1000;
 
-    auto leftWheels = (*virtualRobot).getLeftWheels();
-    auto rightWheels = (*virtualRobot).getRightWheels();
-    auto backSonarArray = (*virtualRobot).getBackSonarArray();
-    auto frontSonarArray = (*virtualRobot).getFrontSonarArray();
+    auto leftWheelsPtr = virtualRobot->getLeftWheels();
+    std::shared_ptr<IMotor> leftWheels = std::dynamic_pointer_cast<IMotor>(leftWheelsPtr);
+    auto rightWheelsPtr = virtualRobot->getRightWheels();
+    std::shared_ptr<IMotor> rightWheels = std::dynamic_pointer_cast<IMotor>(rightWheelsPtr);
+    auto backSonarArrayPtr = virtualRobot->getBackSonarArray();
+    /*
+    std::shared_ptr<ISensor> backSonarArray = std::dynamic_pointer_cast<ISensor>(backSonarArrayPtr);
+    auto frontSonarArrayPtr = virtualRobot->getFrontSonarArray();
+    std::shared_ptr<std::list<ISensor>> frontSonarArray = std::dynamic_pointer_cast<ISensor>(frontSonarArrayPtr);*/
 
 
     // TODO: check the transission from WeBots velocity to ARIA velocity
-    double velocityLeft = (*leftWheels).getVelocity();
-    double velocityRight = (*rightWheels).getVelocity();
+    double velocityLeft = leftWheels->getVelocity();
+    double velocityRight = rightWheels->getVelocity();
 
     if (velocityLeft == velocityRight) {
+        std::ostringstream oss;
+        oss << velocityLeft;
+        std::string logMessage = "Driving in a straight line with velocity of " + oss.str() + "m/s";
+        ArLog::log(ArLog::Normal, logMessage.c_str());
+
+
         realRobot.setVel(velocityLeft);
     } else {
 
@@ -115,12 +128,10 @@ int AriaController::robotStep(int period) {
         secondsSinceStart = difftime(time(0), start);
     }
 
-    int deltaTime = secondsSinceStart - period;
+    int deltaTime = (int) (secondsSinceStart - periodAsDouble) * 1000;
 
     return deltaTime;
 }
 
-AriaController::AriaController(const std::shared_ptr<IP3AT> &virtualRobot) : virtualRobot(virtualRobot) {
-    this->virtualRobot = std::make_shared<IP3AT>(virtualRobot);
-}
+AriaController::AriaController(const std::shared_ptr<IP3AT> &virtualRobot) : virtualRobot(virtualRobot) {}
 
