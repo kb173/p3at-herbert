@@ -55,7 +55,9 @@ add_executable(tests
         ${source_files}
         tests.cpp
         Controller/ControllerTests.cpp
-        Robots/RobotTests.cpp Devices/DeviceTests.cpp)
+        Devices/DeviceTests.cpp
+        Robots/RobotTests.cpp
+        Manager/ManagerTest.cpp)
 
 target_link_libraries(tests ${CMAKE_DL_LIBS})
 
