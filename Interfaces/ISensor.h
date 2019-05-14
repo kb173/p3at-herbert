@@ -9,15 +9,15 @@
 /// Every sensor has a value and methods setValue and getValue
 ///
 
-class ISensor : IDevice{
+#include "IDevice.h"
+
+class ISensor : public IDevice {
 public:
     /// returns the value of the sensor
     virtual double getValue() = 0;
 
     /// sets the value of the sensor
-    /// returns true if everything worked
-    /// returns false if not
-    virtual bool setValue(double val) = 0;
+    virtual void setValue(double val) = 0;
 protected:
     /// stores the value of the sensor
     double value;

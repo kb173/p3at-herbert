@@ -27,3 +27,8 @@ void VirtualDeviceManager::attachDeviceToMap(WbDeviceTag tag, std::shared_ptr<ID
     }
 
 }
+
+std::map<WbDeviceTag,std::shared_ptr<IDevice>> VirtualDeviceManager::getDevices()
+{
+    return devices;
+}

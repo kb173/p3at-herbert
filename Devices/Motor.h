@@ -7,8 +7,11 @@
 
 #include "../Interfaces/IMotor.h"
 
-class Motor : IMotor{
+class Motor : public IMotor{
 public:
+    /// constructor, sets all values 0
+    Motor();
+
     /// returns the velocity of the motor
     double getVelocity();
 
@@ -16,16 +19,18 @@ public:
     void setVelocity(double vel);
 
     /// returns the acceleration of the motor
-    double getAcceleration() = 0;
+    double getAcceleration();
 
     /// sets the acceleration of the motor
-    void setAcceleration(double acc) = 0;
+    void setAcceleration(double acc);
 
     /// returns the position of the motor
-    double getPosition() = 0;
+    double getPosition();
 
     /// sets the position of the motor
-    void setPosition(double pos) = 0;
+    void setPosition(double pos);
+
+    ~Motor() = default;
 };
 
 

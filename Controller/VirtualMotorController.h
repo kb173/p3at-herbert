@@ -10,7 +10,7 @@
 
 #include "../Interfaces/IVirtualMotorController.h"
 
-class VirtualMotorController : IVirtualMotorController{
+class VirtualMotorController : public IVirtualMotorController{
 public:
     VirtualMotorController(std::shared_ptr<IVirtualDeviceManager> dm) : IVirtualMotorController(std::move(dm)) {};
 
