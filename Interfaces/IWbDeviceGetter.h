@@ -10,6 +10,7 @@
 
 
 class IWbDeviceGetter {
+public:
     virtual WbDeviceTag getByName(const std::string&) = 0;
 };
 

@@ -52,7 +52,7 @@ add_library(p3at_herbert SHARED
         Controller/VirtualSensorController.h
         Tools/Converter.cpp
         Tools/Converter.h
-        Interfaces/IConverter.h)
+        Interfaces/IConverter.h Tools/MockWbDeviceGetter.cpp Tools/MockWbDeviceGetter.h)
 
 function(DisableCompilingPlatformSpecificSources file_list)
     foreach (file ${file_list})

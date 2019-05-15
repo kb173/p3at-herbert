@@ -7,7 +7,8 @@
 #include "../Devices/Motor.h"
 #include "../Devices/Sensor.h"
 
-void P3AT::fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager) {
+void P3AT::fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager,
+                             std::shared_ptr<IWbDeviceGetter> deviceGetter) {
     leftWheels = std::dynamic_pointer_cast<IDevice>
             (std::make_shared<Motor>(Motor()));
 
@@ -17,11 +18,11 @@ void P3AT::fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManage
     insertEightSensors(frontSonarArray);
     insertEightSensors(backSonarArray);
 
-    deviceManager->attachDeviceToMap(0, leftWheels);
-    deviceManager->attachDeviceToMap(1, rightWheels);
+    deviceManager->attachDeviceToMap(deviceGetter->getByName(LEFTWHEELSNAME), leftWheels);
+    deviceManager->attachDeviceToMap(deviceGetter->getByName(RIGHTWHEELSNAME), rightWheels);
 
-    insertAll(deviceManager, frontSonarArray, 10);
-    insertAll(deviceManager, backSonarArray, 20);
+    insertAll(deviceManager, frontSonarArray, deviceGetter, 0);
+    insertAll(deviceManager, backSonarArray, deviceGetter, 8);
 }
 
 std::shared_ptr<IDevice> P3AT::getLeftWheels() {
@@ -49,11 +50,12 @@ void P3AT::insertEightSensors(std::vector<std::shared_ptr<IDevice>> &sonarArray)
 }
 
 void P3AT::insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager,
-                     const std::vector<std::shared_ptr<IDevice>> &list, unsigned short startTag) {
+                     const std::vector<std::shared_ptr<IDevice>> &list,
+                     const std::shared_ptr<IWbDeviceGetter> &deviceGetter, unsigned short startTag) {
     unsigned short index = startTag;
 
     for (const auto &device : list) {
-        deviceManager->attachDeviceToMap(index, device);
+        deviceManager->attachDeviceToMap(deviceGetter->getByName(SENSORSNAME + std::to_string(index)), device);
         index++;
     }
 }

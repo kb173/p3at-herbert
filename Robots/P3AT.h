@@ -16,7 +16,7 @@ public:
     /// 1: Right wheels
     /// 10-17: Front sonar array
     /// 20-27: Back sonar array
-    void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager) override;
+    void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager>, std::shared_ptr<IWbDeviceGetter>) override;
 
     std::shared_ptr<IDevice> getLeftWheels() override;
 
@@ -29,9 +29,10 @@ public:
 private:
     static void insertEightSensors(std::vector<std::shared_ptr<IDevice>> &);
 
-    static void
-    insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager, const std::vector<std::shared_ptr<IDevice>> &,
-              unsigned short);
+    void
+    insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager,
+              const std::vector<std::shared_ptr<IDevice>> &list,
+              const std::shared_ptr<IWbDeviceGetter>& deviceGetter, unsigned short startTag);
 
     std::shared_ptr<IDevice> leftWheels;
 
@@ -40,6 +41,12 @@ private:
     std::vector<std::shared_ptr<IDevice>> frontSonarArray;
 
     std::vector<std::shared_ptr<IDevice>> backSonarArray;
+
+    const std::string LEFTWHEELSNAME = "front left wheel";
+
+    const std::string RIGHTWHEELSNAME = "front right wheel";
+
+    const std::string SENSORSNAME = "sensor";
 
 };
 

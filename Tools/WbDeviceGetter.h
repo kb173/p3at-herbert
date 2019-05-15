@@ -9,6 +9,7 @@
 #include "../Interfaces/IWbDeviceGetter.h"
 
 class WbDeviceGetter : public IWbDeviceGetter {
+public:
     WbDeviceTag getByName(const std::string& name) override;
 };
 

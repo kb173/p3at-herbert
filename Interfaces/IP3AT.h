@@ -11,11 +11,13 @@
 #include "IDevice.h"
 #include "IMotor.h"
 #include "ISensor.h"
+#include "IWbDeviceGetter.h"
 #include <vector>
 
 class IP3AT : public IRobot {
 public:
-    virtual void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager) override = 0;
+    virtual void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager,
+                                   std::shared_ptr<IWbDeviceGetter>) override = 0;
 
     /// @return The left wheels of the robot, which is of type IMotor (returned as shared pointer to an IDevice)
     virtual std::shared_ptr<IDevice> getLeftWheels() = 0;
