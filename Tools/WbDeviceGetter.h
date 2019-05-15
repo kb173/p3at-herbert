@@ -10,7 +10,7 @@
 
 class WbDeviceGetter : public IWbDeviceGetter {
 public:
-    WbDeviceTag getByName(const std::string& name) override;
+    WbDeviceTag getByName(const std::string &name) override;
 };
 
 

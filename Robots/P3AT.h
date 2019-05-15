@@ -32,7 +32,7 @@ private:
     void
     insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager,
               const std::vector<std::shared_ptr<IDevice>> &list,
-              const std::shared_ptr<IWbDeviceGetter>& deviceGetter, unsigned short startTag);
+              const std::shared_ptr<IWbDeviceGetter> &deviceGetter, unsigned short startTag);
 
     std::shared_ptr<IDevice> leftWheels;
 

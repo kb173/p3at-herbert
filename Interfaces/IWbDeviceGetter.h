@@ -11,7 +11,7 @@
 
 class IWbDeviceGetter {
 public:
-    virtual WbDeviceTag getByName(const std::string&) = 0;
+    virtual WbDeviceTag getByName(const std::string &) = 0;
 };
 
 #endif //P3AT_HERBERT_IWBDEVICEGETTER_H

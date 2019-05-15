@@ -8,7 +8,7 @@
 
 #include "../Interfaces/IWbDeviceGetter.h"
 
-class MockWbDeviceGetter : public IWbDeviceGetter{
+class MockWbDeviceGetter : public IWbDeviceGetter {
 public:
     WbDeviceTag getByName(const std::string &string) override;
 

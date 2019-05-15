@@ -12,7 +12,7 @@ SCENARIO("Motor") {
     GIVEN("A motor") {
 
         auto motor = std::dynamic_pointer_cast<IMotor>
-            (std::make_shared<Motor>(Motor()));
+                (std::make_shared<Motor>(Motor()));
 
         WHEN("Motor is constructed") {
 

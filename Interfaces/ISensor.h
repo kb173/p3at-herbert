@@ -18,6 +18,7 @@ public:
 
     /// sets the value of the sensor
     virtual void setValue(double val) = 0;
+
 protected:
     /// stores the value of the sensor
     double value;

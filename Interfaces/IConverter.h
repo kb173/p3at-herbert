@@ -8,6 +8,7 @@
 class IConverter {
 public:
     virtual double radToMm(double radius, double radian) = 0;
+
     virtual ~IConverter() = default;
 };
 

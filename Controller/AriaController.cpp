@@ -15,17 +15,17 @@ bool AriaController::start(void *arg) {
 
     //std::string args((const char*)arg);
     ArArgumentBuilder ab = ArArgumentBuilder();
-    ab.add((const char*)arg);
+    ab.add((const char *) arg);
 
     *argParser = ArArgumentParser(&ab);
     argParser->loadDefaultArguments();
 
     ArRobotConnector robotConnector(argParser, &realRobot);
 
-    if(!robotConnector.connectRobot()) {
+    if (!robotConnector.connectRobot()) {
         ArLog::log(ArLog::Normal, "Could not connect to robot");
 
-        if(argParser->checkHelpAndWarnUnparsed()) {
+        if (argParser->checkHelpAndWarnUnparsed()) {
             Aria::logOptions();
             Aria::exit(1);
 
@@ -120,11 +120,11 @@ int AriaController::robotStep(int period) {
         std::map<int, ArSonarMTX *> *sonarArray = realRobot.getSonarMap();
     }
 
-    double secondsSinceStart = difftime( time(0), start);
+    double secondsSinceStart = difftime(time(0), start);
 
 
     // The robot should at least wait period seconds and return deltatime if exceeds
-    while(secondsSinceStart < period) {
+    while (secondsSinceStart < period) {
         secondsSinceStart = difftime(time(0), start);
     }
 

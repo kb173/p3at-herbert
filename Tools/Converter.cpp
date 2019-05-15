@@ -4,7 +4,6 @@
 
 #include "Converter.h"
 
-double Converter::radToMm(double radius, double radian)
-{
+double Converter::radToMm(double radius, double radian) {
     return radian * radius;
 }

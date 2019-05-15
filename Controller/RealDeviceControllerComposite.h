@@ -23,7 +23,7 @@ public:
     int robotStep(int period) override;
 
 protected:
-   std::list<std::shared_ptr<IRealDeviceController>> controllers;
+    std::list<std::shared_ptr<IRealDeviceController>> controllers;
 
 };
 
