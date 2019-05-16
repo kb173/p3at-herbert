@@ -5,17 +5,13 @@
 #ifndef P3AT_HERBERT_IVIRTUALDEVICEMANAGER_H
 #define P3AT_HERBERT_IVIRTUALDEVICEMANAGER_H
 
-#include "controller/c/webots/types.h"
+#include <webots/types.h>
 #include <memory>
 #include <map>
 
-///
-/// IVirtualDeviceManager stores a collection of all the devices within a std::map
-/// It has a method getDeviceByTag() that returns a device for a given tag;
-///
-
 class IDevice;
 
+/// Maps IWbDeviceTags to IDevices using a std::map.
 class IVirtualDeviceManager {
 public:
     /// returns the device associated to the given tag
@@ -26,12 +22,13 @@ public:
     virtual void attachDeviceToMap(WbDeviceTag tag, std::shared_ptr<IDevice> device) = 0;
 
     /// returns the complete map of the devices
-    virtual std::map<WbDeviceTag,std::shared_ptr<IDevice>> getDevices() = 0;
+    virtual std::map<WbDeviceTag, std::shared_ptr<IDevice>> getDevices() = 0;
 
     virtual ~IVirtualDeviceManager() = default;
+
 protected:
     /// collection of all the devices associated with their tags
-    std::map<WbDeviceTag,std::shared_ptr<IDevice>> devices;
+    std::map<WbDeviceTag, std::shared_ptr<IDevice>> devices;
 };
 
 

@@ -5,8 +5,6 @@
 #ifndef P3AT_HERBERT_IDEVICE_H
 #define P3AT_HERBERT_IDEVICE_H
 
-#include "controller/c/webots/types.h"
-
 class IDevice {
 public:
     virtual ~IDevice() = default;

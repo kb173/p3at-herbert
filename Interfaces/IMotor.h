@@ -5,12 +5,10 @@
 #ifndef P3AT_HERBERT_IMOTOR_H
 #define P3AT_HERBERT_IMOTOR_H
 
-///
-/// Every motor has velocity and methods setVelocity and getVelocity
-///
-
 #include "IDevice.h"
 
+/// A motor device which can move along a single axis with a certain velocity and acceleration,
+/// and which has a certain position.
 class IMotor : public IDevice {
 public:
     /// returns the velocity of the motor

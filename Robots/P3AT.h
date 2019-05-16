@@ -10,16 +10,12 @@
 
 class P3AT : public IP3AT {
 public:
-    // TODO: We probably need to keep those tags synchronized with group 17?
-    /// The layout of the devices will look like this:
-    /// 0: Left wheels
-    /// 1: Right wheels
-    /// 10-17: Front sonar array
-    /// 20-27: Back sonar array
 
     explicit P3AT(double radius);
 
-    void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager) override;
+    void
+    fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager,
+                      std::shared_ptr<IWbDeviceGetter> deviceGetter) override;
 
     double getRadius() override;
 
@@ -34,9 +30,10 @@ public:
 private:
     static void insertEightSensors(std::vector<std::shared_ptr<IDevice>> &);
 
-    static void
-    insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager, const std::vector<std::shared_ptr<IDevice>> &,
-              unsigned short);
+    void
+    insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager,
+              const std::vector<std::shared_ptr<IDevice>> &list,
+              const std::shared_ptr<IWbDeviceGetter> &deviceGetter, unsigned short startTag);
 
     const double radius;
 
@@ -47,6 +44,12 @@ private:
     std::vector<std::shared_ptr<IDevice>> frontSonarArray;
 
     std::vector<std::shared_ptr<IDevice>> backSonarArray;
+
+    const std::string LEFTWHEELSNAME = "front left wheel";
+
+    const std::string RIGHTWHEELSNAME = "front right wheel";
+
+    const std::string SENSORSNAME = "sensor";
 
 };
 

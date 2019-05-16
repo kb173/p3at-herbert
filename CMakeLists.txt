@@ -4,6 +4,20 @@ project(p3at_herbert CXX)
 set(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_FLAGS -pthread)
 
+set(WEBOTS_HOME /usr/local/webots)
+
+set(WEBOTS_INCLUDE
+        ${WEBOTS_HOME}/include/controller/c
+        )
+
+file(GLOB webots_libs
+        "${WEBOTS_HOME}/lib/*.so*"
+        )
+
+find_library(WEBOTS_CONTROLLER_LIB Controller ${WEBOTS_HOME}/lib)
+
+link_directories(${WEBOTS_HOME}/lib)
+link_libraries(${webots_libs})
 
 add_library(p3at_herbert SHARED
         Controller/RealDeviceControllerComposite.cpp
@@ -24,25 +38,36 @@ add_library(p3at_herbert SHARED
         Controller/VirtualMotorController.cpp
         Controller/VirtualMotorController.h
         Devices/Motor.cpp
-        Devices/Motor.h Manager/VirtualDeviceManager.cpp
+        Devices/Motor.h
+        Manager/VirtualDeviceManager.cpp
         Manager/VirtualDeviceManager.h
         Robots/P3AT.cpp
         Robots/P3AT.h
         Devices/Sensor.cpp
-        Devices/Sensor.h Tools/Converter.cpp Tools/Converter.h)
+        Tools/WbDeviceGetter.cpp
+        Tools/WbDeviceGetter.h
+        Interfaces/IWbDeviceGetter.h
+        Devices/Sensor.h
+        Controller/VirtualSensorController.cpp
+        Controller/VirtualSensorController.h
+        Tools/Converter.cpp
+        Tools/Converter.h
+        Interfaces/IConverter.h
+        Tools/MockWbDeviceGetter.cpp
+        Tools/MockWbDeviceGetter.h)
 
-function (DisableCompilingPlatformSpecificSources file_list)
-    foreach(file ${file_list})
+function(DisableCompilingPlatformSpecificSources file_list)
+    foreach (file ${file_list})
         if (
-            ((${file} MATCHES "^(.*)_WIN\\.cpp") AND NOT WIN32) OR
-            ((${file} MATCHES "^(.*)_LIN\\.cpp") AND NOT UNIX)
+        ((${file} MATCHES "^(.*)_WIN\\.cpp") AND NOT WIN32) OR
+        ((${file} MATCHES "^(.*)_LIN\\.cpp") AND NOT UNIX)
         )
             set_source_files_properties(
                     ${file}
                     PROPERTIES HEADER_FILE_ONLY TRUE
             )
-        endif()
-    endforeach()
+        endif ()
+    endforeach ()
 endfunction()
 
 file(GLOB_RECURSE source_files
@@ -57,12 +82,12 @@ add_executable(tests
         Controller/ControllerTests.cpp
         Devices/DeviceTests.cpp
         Robots/RobotTests.cpp
-        Manager/ManagerTest.cpp)
+        Manager/ManagerTest.cpp Tools/ToolTests.cpp)
 
 target_link_libraries(tests ${CMAKE_DL_LIBS})
-
-include_directories(webots/include)
 include_directories(Aria/include)
 include_directories(Catch2/single_include/catch2)
+include_directories(${WEBOTS_INCLUDE})
+include_directories(webots/include)
 
 target_link_libraries(tests p3at_herbert)

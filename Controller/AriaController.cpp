@@ -17,7 +17,7 @@ bool AriaController::start(void *arg) {
 
     //std::string args((const char*)arg);
     ArArgumentBuilder ab = ArArgumentBuilder();
-    ab.add((const char*)arg);
+    ab.add((const char *) arg);
 
     *argParser = ArArgumentParser(&ab);
     argParser->loadDefaultArguments();
@@ -25,10 +25,10 @@ bool AriaController::start(void *arg) {
     ArRobotConnector robotConnector(argParser, &realRobot);
     ArSonarConnector sonarConnector(argParser, &realRobot, &robotConnector);
 
-    if(!robotConnector.connectRobot()) {
+    if (!robotConnector.connectRobot()) {
         ArLog::log(ArLog::Normal, "Could not connect to robot");
 
-        if(argParser->checkHelpAndWarnUnparsed()) {
+        if (argParser->checkHelpAndWarnUnparsed()) {
             Aria::logOptions();
             Aria::exit(1);
 
@@ -148,6 +148,7 @@ int AriaController::robotStep(int period) {
     } else {
         ArLog::log(ArLog::Normal, "Sonars were not enabled.");
     }
+
 
     // We must "lock" the ArRobot object
     // before calling its methods, and "unlock" when done, to prevent conflicts

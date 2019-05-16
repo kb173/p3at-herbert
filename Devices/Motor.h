@@ -7,7 +7,7 @@
 
 #include "../Interfaces/IMotor.h"
 
-class Motor : public IMotor{
+class Motor : public IMotor {
 public:
     /// constructor, sets all values 0
     Motor();
