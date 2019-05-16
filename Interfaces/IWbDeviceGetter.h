@@ -8,7 +8,7 @@
 #include <string>
 #include <webots/types.h>
 
-
+/// Wrapper for wb_robot_get_device. Talks to WeBots to map device names to WbDeviceTags.
 class IWbDeviceGetter {
 public:
     /// Gets the WbDeviceTag which corresponds to the given name.

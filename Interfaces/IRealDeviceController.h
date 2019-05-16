@@ -7,7 +7,6 @@
 
 /// Interface for the mandatory functions which every RealDeviceController requires
 /// find more Information: https://www.cyberbotics.com/doc/guide/controller-plugin
-
 class IRealDeviceController {
 public:
 

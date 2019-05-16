@@ -8,6 +8,8 @@
 #include <webots/types.h>
 #include "IVirtualDeviceManager.h"
 
+/// Implements the required WeBots remote control functions for sensors.
+/// These functions should be mapped to the incoming WeBots calls.
 class IVirtualSensorController {
 public:
     IVirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : deviceManager(std::move(dm)) {};

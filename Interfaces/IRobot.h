@@ -8,6 +8,11 @@
 #include "IVirtualDeviceManager.h"
 #include "IWbDeviceGetter.h"
 
+/// Model for any robot with devices. It is mainly used as a nicer interface to devices
+/// for RealDeviceControllers. This way, these controllers can get robot devices here
+/// instead of having to know about WbDeviceTags, making them independent from WeBots.
+/// It is also responsible for filling the VirtualDeviceManager with the same devices
+/// and tags as the corresponding WeBots robot.
 class IRobot {
 public:
     /// Instances all devices of this robot and adds them to the given deviceManager.

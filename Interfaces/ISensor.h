@@ -5,12 +5,10 @@
 #ifndef P3AT_HERBERT_ISENSOR_H
 #define P3AT_HERBERT_ISENSOR_H
 
-///
-/// Every sensor has a value and methods setValue and getValue
-///
-
 #include "IDevice.h"
 
+/// A simple sensor device which holds one value (the current reading).
+/// The unit of this reading depends on the specific sensor.
 class ISensor : public IDevice {
 public:
     /// returns the value of the sensor

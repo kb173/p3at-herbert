@@ -14,6 +14,8 @@
 #include "IWbDeviceGetter.h"
 #include <vector>
 
+/// Model for a P3AT robot: It has left wheels and right wheels (controlled by one motor on each side)
+/// and sonar arrays with 8 sensors per array on the front and on the back.
 class IP3AT : public IRobot {
 public:
     virtual void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager,

@@ -10,6 +10,8 @@
 #include <webots/types.h>
 #include "IVirtualDeviceManager.h"
 
+/// Implements the required WeBots remote control functions for motors.
+/// These functions should be mapped to the incoming WeBots calls.
 class IVirtualMotorController {
 public:
     IVirtualMotorController(std::shared_ptr<IVirtualDeviceManager> dm) : deviceManager(std::move(dm)) {};

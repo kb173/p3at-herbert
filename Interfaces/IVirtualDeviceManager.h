@@ -9,13 +9,9 @@
 #include <memory>
 #include <map>
 
-///
-/// IVirtualDeviceManager stores a collection of all the devices within a std::map
-/// It has a method getDeviceByTag() that returns a device for a given tag;
-///
-
 class IDevice;
 
+/// Maps IWbDeviceTags to IDevices using a std::map.
 class IVirtualDeviceManager {
 public:
     /// returns the device associated to the given tag
