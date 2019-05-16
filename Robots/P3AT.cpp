@@ -57,3 +57,9 @@ void P3AT::insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager
         index++;
     }
 }
+
+double P3AT::getRadius() {
+    return radius;
+}
+
+P3AT::P3AT(const double radius) : radius(radius) {}

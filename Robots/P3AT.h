@@ -16,7 +16,12 @@ public:
     /// 1: Right wheels
     /// 10-17: Front sonar array
     /// 20-27: Back sonar array
+
+    explicit P3AT(double radius);
+
     void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager) override;
+
+    double getRadius() override;
 
     std::shared_ptr<IDevice> getLeftWheels() override;
 
@@ -32,6 +37,8 @@ private:
     static void
     insertAll(const std::shared_ptr<IVirtualDeviceManager> &deviceManager, const std::vector<std::shared_ptr<IDevice>> &,
               unsigned short);
+
+    const double radius;
 
     std::shared_ptr<IDevice> leftWheels;
 

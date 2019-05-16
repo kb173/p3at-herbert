@@ -29,10 +29,13 @@ public:
     int robotStep(int period) override;
 
 private:
+    void fillSonarDevices(std::vector<std::shared_ptr<IDevice>> virtualSonarVector);
+
     ArRobot realRobot;
     ArArgumentParser *argParser;
     bool connectionStopped = false;
     std::shared_ptr<IP3AT> virtualRobot;
+    ArRangeDevice *realSonar;
 
 
 };

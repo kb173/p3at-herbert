@@ -32,6 +32,10 @@ public:
     /// Viewed from the front, they are laid out like this: 7 6 5 4 3 2 1 0
     /// @return A list of all sensors from right to left, which are of type ISensor (returned as shared pointers to IDevices)
     virtual std::vector<std::shared_ptr<IDevice>> getBackSonarArray() = 0;
+
+    /// @return Returns the radius of the robots wheels in mm as double.
+
+    virtual double getRadius() = 0;
 };
 
 #endif //P3AT_HERBERT_IP3AT_H
