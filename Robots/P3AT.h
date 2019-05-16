@@ -10,13 +10,9 @@
 
 class P3AT : public IP3AT {
 public:
-    // TODO: We probably need to keep those tags synchronized with group 17?
-    /// The layout of the devices will look like this:
-    /// 0: Left wheels
-    /// 1: Right wheels
-    /// 10-17: Front sonar array
-    /// 20-27: Back sonar array
-    void fillDeviceManager(std::shared_ptr<IVirtualDeviceManager>, std::shared_ptr<IWbDeviceGetter>) override;
+    void
+    fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager,
+                      std::shared_ptr<IWbDeviceGetter> deviceGetter) override;
 
     std::shared_ptr<IDevice> getLeftWheels() override;
 

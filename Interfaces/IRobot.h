@@ -10,8 +10,11 @@
 
 class IRobot {
 public:
-    /// Inserts all devices of this robot into a VirtualDeviceManager
-    /// @param deviceManager The IVirtualDeviceManager to fill
+    /// Instances all devices of this robot and adds them to the given deviceManager.
+    /// The tags are chosen by the given deviceGetter to keep them in sync with the tags in WeBots.
+    /// For this, the device names (private constants) are used.
+    /// \param deviceManager The VirtualDeviceManager to put the devices into
+    /// \param deviceGetter The WbDeviceGetter which should provide the WbDeviceTags
     virtual void
     fillDeviceManager(std::shared_ptr<IVirtualDeviceManager> deviceManager, std::shared_ptr<IWbDeviceGetter>) = 0;
 };
