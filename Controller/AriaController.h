@@ -33,6 +33,7 @@ private:
 
     ArRobot realRobot;
     ArSonarDevice sonarInitializer;
+    ArSonarDevice sonarInitializer2;
     std::shared_ptr<ArArgumentParser> argParser;
     bool connectionStopped = false;
     std::shared_ptr<IP3AT> virtualRobot;

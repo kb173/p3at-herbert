@@ -47,6 +47,7 @@ bool AriaController::start(void *arg) {
     }
 
     realRobot.addRangeDevice(&sonarInitializer);
+    realRobot.addRangeDevice(&sonarInitializer2);
 
     // TODO: Check if this is really needed?
     if(!sonarConnector->connectSonars()) {
@@ -146,7 +147,13 @@ int AriaController::robotStep(int period) {
             std::vector<std::shared_ptr<IDevice>> virtualLeftSonarVector;
             std::vector<std::shared_ptr<IDevice>> virtualRightSonarVector;
 
-            virtualLeftSonarVector.resize(virtualBackSonarVector.size());
+            for (int i = 0; i < 16; i++) {
+                std::cout << realRobot.getSonarRange(i) << std::endl;
+            }
+
+            std::cout << std::endl;
+
+            /*virtualLeftSonarVector.resize(virtualBackSonarVector.size());
             virtualRightSonarVector.resize(virtualBackSonarVector.size());
 
             fillSonarDevices(virtualLeftSonarVector, 0, 1);
@@ -183,7 +190,7 @@ int AriaController::robotStep(int period) {
                 std::cout << std::dynamic_pointer_cast<ISensor>(sensor)->getValue() << " ";
             }
 
-            std::cout << std::endl;
+            std::cout << std::endl;*/
         }
 
     } else {
