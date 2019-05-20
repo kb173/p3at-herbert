@@ -84,10 +84,16 @@ add_executable(tests
         Robots/RobotTests.cpp
         Manager/ManagerTest.cpp Tools/ToolTests.cpp)
 
+add_executable(real_robot_test
+        ${source_files}
+        main.cpp)
+
 target_link_libraries(tests ${CMAKE_DL_LIBS})
+target_link_libraries(real_robot_test ${CMAKE_DL_LIBS})
 include_directories(Aria/include)
 include_directories(Catch2/single_include/catch2)
 include_directories(${WEBOTS_INCLUDE})
 include_directories(webots/include)
 
 target_link_libraries(tests p3at_herbert)
+target_link_libraries(real_robot_test p3at_herbert)

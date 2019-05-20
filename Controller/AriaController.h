@@ -29,15 +29,16 @@ public:
     int robotStep(int period) override;
 
 private:
-    void fillSonarDevices(std::vector<std::shared_ptr<IDevice>> virtualSonarVector);
+    void fillSonarDevices(std::vector<std::shared_ptr<IDevice>> &virtualSonarVector, double startAngle, int multiplier);
 
     ArRobot realRobot;
+    ArSonarDevice sonarInitializer;
     std::shared_ptr<ArArgumentParser> argParser;
     bool connectionStopped = false;
     std::shared_ptr<IP3AT> virtualRobot;
     std::shared_ptr<ArRangeDevice> realSonar;
-
-
+    std::shared_ptr<ArRobotConnector> robotConnector;
+    std::shared_ptr<ArSonarConnector> sonarConnector;
 };
 
 
