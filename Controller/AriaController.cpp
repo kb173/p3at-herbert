@@ -8,7 +8,6 @@
 #include "../Interfaces/IMotor.h"
 #include "../Tools/Converter.h"
 
-// TODO: implement empty functions
 // TODO: Test driven development requires tests :-)
 
 bool AriaController::start(void *arg) {
@@ -16,14 +15,15 @@ bool AriaController::start(void *arg) {
     connectionStopped = false;
 
     //std::string args((const char*)arg);
+
     ArArgumentBuilder ab = ArArgumentBuilder();
     ab.add((const char *) arg);
 
-    *argParser = ArArgumentParser(&ab);
+    argParser = std::make_shared<ArArgumentParser>(ArArgumentParser(&ab));
     argParser->loadDefaultArguments();
 
-    ArRobotConnector robotConnector(argParser, &realRobot);
-    ArSonarConnector sonarConnector(argParser, &realRobot, &robotConnector);
+    ArRobotConnector robotConnector(argParser.get(), &realRobot);
+    ArSonarConnector sonarConnector(argParser.get(), &realRobot, &robotConnector);
 
     if (!robotConnector.connectRobot()) {
         ArLog::log(ArLog::Normal, "Could not connect to robot");
@@ -138,7 +138,7 @@ int AriaController::robotStep(int period) {
     if (realRobot.areSonarsEnabled()) {
         // In the order of right to left having frontal vision on the robot
 
-        realSonar = realRobot.findRangeDevice("sonar");
+        realSonar = std::shared_ptr<ArRangeDevice>(realRobot.findRangeDevice("sonar"));
         auto virtualFrontSonarVector = virtualRobot->getFrontSonarArray();
         auto virtualBackSonarVector = virtualRobot->getBackSonarArray();
 
@@ -189,7 +189,7 @@ void AriaController::fillSonarDevices(std::vector<std::shared_ptr<IDevice>> virt
     }
 }
 
-AriaController::AriaController(const std::shared_ptr<IP3AT> &virtualRobot) : virtualRobot(virtualRobot) {}
+AriaController::AriaController(std::shared_ptr<IP3AT> virtualRobot) : virtualRobot(virtualRobot) {}
 
 
 

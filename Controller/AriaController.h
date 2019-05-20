@@ -13,10 +13,10 @@
 /// For examples look at: https://github.com/cinvesrob/Aria/blob/master/examples/
 /// e.g. simpleMotionCommands.cpp
 
-class AriaController : IRealDeviceController {
+class AriaController : public IRealDeviceController {
 public:
 
-    AriaController(const std::shared_ptr<IP3AT> &virtualRobot);
+    AriaController(std::shared_ptr<IP3AT> virtualRobot);
 
     bool start(void *arg) override;
 
@@ -32,10 +32,10 @@ private:
     void fillSonarDevices(std::vector<std::shared_ptr<IDevice>> virtualSonarVector);
 
     ArRobot realRobot;
-    ArArgumentParser *argParser;
+    std::shared_ptr<ArArgumentParser> argParser;
     bool connectionStopped = false;
     std::shared_ptr<IP3AT> virtualRobot;
-    ArRangeDevice *realSonar;
+    std::shared_ptr<ArRangeDevice> realSonar;
 
 
 };

@@ -6,9 +6,12 @@
 #include "../Interfaces/IVirtualDeviceManager.h"
 #include "../Interfaces/IVirtualMotorController.h"
 #include "VirtualMotorController.h"
+#include "AriaController.h"
 #include "../Manager/VirtualDeviceManager.h"
 #include "../Interfaces/IMotor.h"
 #include "../Devices/Motor.h"
+#include "../Interfaces/IRealDeviceController.h"
+#include "../Robots/P3AT.h"
 
 SCENARIO("VirtualMotorController", "[controller]") {
     GIVEN("A DeviceManager with a motor, and a VirtualMotorController") {
@@ -31,3 +34,29 @@ SCENARIO("VirtualMotorController", "[controller]") {
         }
     }
 }
+
+
+/// Testing the whole ARIA library seems really hacky and doesn't work the way we inteded, which is why we decided not
+/// unit test this framework
+SCENARIO("AriaController", "[controller]") {
+    GIVEN("An AriaController with given virtualRobot") {
+
+        auto virtualRobot = std::dynamic_pointer_cast<IP3AT>
+                (std::make_shared<P3AT>(20));
+        auto ariaController = std::dynamic_pointer_cast<IRealDeviceController>
+                (std::make_shared<AriaController>(virtualRobot));
+
+        WHEN("Using the start method") {
+            ariaController->start((void*)"-help");
+            /*THEN("connectionStopped-field should be false") {
+                REQUIRE(ariaController->hasFailed() == false);
+            }*/
+        }
+
+        /*WHEN("Having started the robot the connectionStopped-bool should not be false") {
+
+        }*/
+
+    }
+}
+

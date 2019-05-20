@@ -14,7 +14,7 @@ SCENARIO("P3AT", "[robot, p3at]") {
         auto deviceManager = std::dynamic_pointer_cast<IVirtualDeviceManager>
                 (std::make_shared<VirtualDeviceManager>());
         auto p3at = std::dynamic_pointer_cast<IP3AT>
-                (std::make_shared<P3AT>(P3AT()));
+                (std::make_shared<P3AT>(P3AT(20)));
         auto deviceGetter = std::dynamic_pointer_cast<IWbDeviceGetter>
                 (std::make_shared<MockWbDeviceGetter>(MockWbDeviceGetter()));
 
