@@ -140,6 +140,23 @@ int AriaController::robotStep(int period) {
     if (realRobot.areSonarsEnabled()) {
         // In the order of right to left having frontal vision on the realRobot
 
+        /*
+         *  Sensors placement in the ARIA array
+         *
+         *       2  3   4  5
+         *       ___________
+         *    1 /           \ 6
+         *      |           |
+         *    0 |           | 7
+         *      |           |
+         *      |           |
+         *      |           |
+         *   15 |           | 8
+         *      |   P3AT    |
+         *   14 \___________/ 9
+         *
+         *     13  12   11  10
+         */
         if (realSonar != nullptr) {
             auto virtualFrontSonarVector = virtualRobot->getFrontSonarArray();
             auto virtualBackSonarVector = virtualRobot->getBackSonarArray();
