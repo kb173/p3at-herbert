@@ -56,3 +56,7 @@ int RealDeviceControllerComposite::robotStep(int period) {
         return timeSum - period;
     }
 }
+
+void RealDeviceControllerComposite::addController(std::shared_ptr<IRealDeviceController> controller) {
+    controllers.push_back(controller);
+}

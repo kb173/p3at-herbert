@@ -10,8 +10,10 @@
 #include <memory>
 #include "../Interfaces/IRealDeviceController.h"
 
-class RealDeviceControllerComposite : IRealDeviceController {
+class RealDeviceControllerComposite : public IRealDeviceController {
 public:
+    void addController(std::shared_ptr<IRealDeviceController> controller);
+
     bool start(void *arg) override;
 
     void stop() override;

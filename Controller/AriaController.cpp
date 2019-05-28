@@ -161,53 +161,19 @@ int AriaController::robotStep(int period) {
             auto virtualFrontSonarVector = virtualRobot->getFrontSonarArray();
             auto virtualBackSonarVector = virtualRobot->getBackSonarArray();
 
-            std::vector<std::shared_ptr<IDevice>> virtualLeftSonarVector;
-            std::vector<std::shared_ptr<IDevice>> virtualRightSonarVector;
-
             for (int i = 0; i < 16; i++) {
                 std::cout << realRobot.getSonarRange(i) << std::endl;
             }
 
+            for (int i = 0; i < 8; i++) {
+                std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[i])->setValue(realRobot.getSonarRange(i));
+            }
+
+            for (int i = 8; i < 16; i++) {
+                std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[i - 8])->setValue(realRobot.getSonarRange(i));
+            }
+
             std::cout << std::endl;
-
-            /*virtualLeftSonarVector.resize(virtualBackSonarVector.size());
-            virtualRightSonarVector.resize(virtualBackSonarVector.size());
-
-            fillSonarDevices(virtualLeftSonarVector, 0, 1);
-            fillSonarDevices(virtualRightSonarVector, -180, 1);
-
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[0])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[3])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[1])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[2])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[2])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[1])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[3])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[0])->getValue());
-
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[4])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[7])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[5])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[6])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[6])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[5])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualBackSonarVector[7])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[4])->getValue());
-
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[0])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[3])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[1])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[2])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[2])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[1])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[3])->setValue(std::dynamic_pointer_cast<ISensor>(virtualLeftSonarVector[0])->getValue());
-
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[4])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[7])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[5])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[6])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[6])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[5])->getValue());
-            std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[7])->setValue(std::dynamic_pointer_cast<ISensor>(virtualRightSonarVector[4])->getValue());
-
-
-            std::cout << std::endl << "Left: " << std::endl;
-            for (auto sensor : virtualLeftSonarVector) {
-                std::cout << std::dynamic_pointer_cast<ISensor>(sensor)->getValue() << " ";
-            }
-
-            std::cout << std::endl << "Right: " << std::endl;
-            for (auto sensor : virtualRightSonarVector) {
-                std::cout << std::dynamic_pointer_cast<ISensor>(sensor)->getValue() << " ";
-            }
-
-            std::cout << std::endl;*/
         }
 
     } else {

@@ -54,7 +54,10 @@ add_library(p3at_herbert SHARED
         Tools/Converter.h
         Interfaces/IConverter.h
         Tools/MockWbDeviceGetter.cpp
-        Tools/MockWbDeviceGetter.h)
+        Tools/MockWbDeviceGetter.h
+        entry_points.cpp
+        Wrapper.cpp
+        Wrapper.h)
 
 function(DisableCompilingPlatformSpecificSources file_list)
     foreach (file ${file_list})

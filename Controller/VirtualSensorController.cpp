@@ -3,6 +3,7 @@
 //
 
 #include "VirtualSensorController.h"
+#include <webots/remote_control.h>
 
 void VirtualSensorController::setAllSensorValues() {
 
@@ -10,7 +11,7 @@ void VirtualSensorController::setAllSensorValues() {
         auto sensor = std::dynamic_pointer_cast<ISensor>(device.second);
 
         if (sensor) {
-            //wbr_distance_sensor_set_value(device.first, sensor->getValue());
+            wbr_distance_sensor_set_value(device.first, sensor->getValue());
         }
     }
 
