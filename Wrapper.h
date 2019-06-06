@@ -23,10 +23,10 @@ public:
 
     static int robotStep(int period);
 
+    static const std::shared_ptr<IRealDeviceController> &getController();
+
 protected:
     static std::shared_ptr<IRealDeviceController> controller;
-public:
-    static const std::shared_ptr<IRealDeviceController> &getController();
 };
 
 

@@ -13,6 +13,7 @@
 #include "Controller/VirtualMotorController.h"
 #include "Robots/P3AT.h"
 #include "Tools/WbDeviceGetter.h"
+#include "entry_points.hpp"
 
 bool wbr_init(WbrInterface *ri) {
     std::cout << "wbr_init called..." << std::endl;
@@ -42,6 +43,8 @@ bool wbr_init(WbrInterface *ri) {
     ri->mandatory.wbr_robot_step = Wrapper::robotStep;
     ri->mandatory.wbr_stop = Wrapper::stop;
     ri->mandatory.wbr_stop_actuators = Wrapper::stopActuators;
+
+    return true;
 }
 
 void wbr_cleanup() {

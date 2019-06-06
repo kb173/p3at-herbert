@@ -4,6 +4,8 @@
 
 #include "Wrapper.h"
 
+std::shared_ptr<IRealDeviceController> Wrapper::controller = nullptr;
+
 bool Wrapper::start(void *arg) {
     return controller->start(arg);
 }

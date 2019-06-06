@@ -49,7 +49,7 @@ private:
 
     const std::string RIGHTWHEELSNAME = "front right wheel";
 
-    const std::string SENSORSNAME = "sensor";
+    const std::string SENSORSNAME = "so";
 
 };
 
