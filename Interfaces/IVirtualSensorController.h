@@ -14,7 +14,7 @@ class IVirtualSensorController {
 public:
     explicit IVirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : deviceManager(std::move(dm)) {};
 
-    ///sets all sensor values in webots
+    /// sets all sensor values in webots
     virtual void setAllSensorValues() = 0;
 
     virtual ~IVirtualSensorController() = default;

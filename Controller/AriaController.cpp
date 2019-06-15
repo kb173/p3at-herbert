@@ -50,7 +50,7 @@ bool AriaController::start(void *arg) {
     realRobot.addRangeDevice(&sonarInitializer2);
 
     // TODO: Check if this is really needed?
-    if(!sonarConnector->connectSonars()) {
+    if (!sonarConnector->connectSonars()) {
         ArLog::log(ArLog::Normal, "Could not connect to sonar sensors");
         Aria::logOptions();
         Aria::exit(3);
@@ -204,7 +204,8 @@ int AriaController::robotStep(int period) {
     return deltaTime;
 }
 
-void AriaController::fillSonarDevices(std::vector<std::shared_ptr<IDevice>> &virtualSonarVector, double startAngle, int multiplier) {
+void AriaController::fillSonarDevices(std::vector<std::shared_ptr<IDevice>> &virtualSonarVector, double startAngle,
+                                      int multiplier) {
     double currentAngle = startAngle;
     double angleSize = (double) 180 / virtualSonarVector.size();
 

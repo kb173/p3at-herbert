@@ -12,10 +12,12 @@
 #include <webots/types.h>
 #include <memory>
 #include <map>
+#include <utility>
 
 class VirtualSensorController : public IVirtualSensorController {
 public:
-    VirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : IVirtualSensorController(dm) {};
+    explicit VirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : IVirtualSensorController(
+            std::move(dm)) {};
 
     void setAllSensorValues() override;
 

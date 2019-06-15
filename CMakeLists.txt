@@ -52,8 +52,6 @@ add_library(p3at_herbert SHARED
         Interfaces/IVirtualDeviceManager.h
         Interfaces/IVirtualMotorController.h
         Interfaces/IVirtualSensorController.h
-        library.cpp
-        library.h
         Controller/AriaController.cpp
         Controller/AriaController.h
         Controller/VirtualMotorController.cpp
