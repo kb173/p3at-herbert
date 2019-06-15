@@ -8,10 +8,14 @@
 
 #include <memory>
 #include "Interfaces/IRealDeviceController.h"
+#include "Interfaces/IVirtualSensorController.h"
+#include "Interfaces/IVirtualMotorController.h"
 
 class Wrapper {
 public:
-    static void setController(std::shared_ptr<IRealDeviceController> controller);
+    static void setRealDeviceController(std::shared_ptr<IRealDeviceController> newController);
+
+    static void setVirtualSensorController(std::shared_ptr<IVirtualSensorController> newController);
 
     static bool start(void *arg);
 
@@ -23,10 +27,12 @@ public:
 
     static int robotStep(int period);
 
-    static const std::shared_ptr<IRealDeviceController> &getController();
-
 protected:
-    static std::shared_ptr<IRealDeviceController> controller;
+    static std::shared_ptr<IRealDeviceController> realDeviceController;
+
+    static std::shared_ptr<IVirtualSensorController> virtualSensorController;
+
+    static std::shared_ptr<IVirtualMotorController> virtualMotorController;
 };
 
 

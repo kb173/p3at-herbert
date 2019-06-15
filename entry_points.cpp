@@ -14,6 +14,7 @@
 #include "Robots/P3AT.h"
 #include "Tools/WbDeviceGetter.h"
 #include "entry_points.hpp"
+#include "Controller/VirtualSensorController.h"
 
 bool wbr_init(WbrInterface *ri) {
     std::cout << "wbr_init called..." << std::endl;
@@ -33,10 +34,11 @@ bool wbr_init(WbrInterface *ri) {
 
     p3at->fillDeviceManager(deviceManager, deviceGetter);
 
-    auto composite = std::make_shared<RealDeviceControllerComposite>();
-    composite->addController(ariaController);
+    auto realDeviceComposite = std::make_shared<RealDeviceControllerComposite>();
+    realDeviceComposite->addController(ariaController);
 
-    Wrapper::setController(composite);
+    Wrapper::setRealDeviceController(realDeviceComposite);
+    Wrapper::setVirtualSensorController(std::make_shared<VirtualSensorController>(deviceManager));
 
     ri->mandatory.wbr_start = Wrapper::start;
     ri->mandatory.wbr_has_failed = Wrapper::hasFailed;

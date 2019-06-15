@@ -1,35 +1,45 @@
+#include <utility>
+
+#include <utility>
+
 //
 // Created by karl on 28.05.19.
 //
 
 #include "Wrapper.h"
 
-std::shared_ptr<IRealDeviceController> Wrapper::controller = nullptr;
+// Initialize static variables
+std::shared_ptr<IRealDeviceController> Wrapper::realDeviceController = nullptr;
+std::shared_ptr<IVirtualSensorController> Wrapper::virtualSensorController = nullptr;
 
 bool Wrapper::start(void *arg) {
-    return controller->start(arg);
+    return realDeviceController->start(arg);
 }
 
 void Wrapper::stop() {
-    controller->stop();
+    realDeviceController->stop();
 }
 
 bool Wrapper::hasFailed() {
-    return controller->hasFailed();
+    return realDeviceController->hasFailed();
 }
 
 void Wrapper::stopActuators() {
-    controller->stopActuators();
+    realDeviceController->stopActuators();
 }
 
 int Wrapper::robotStep(int period) {
-    return controller->robotStep(period);
+    // TODO: Calculate time here?
+    realDeviceController->robotStep(0);
+    virtualSensorController->setAllSensorValues();
+
+    return 0; // FIXME
 }
 
-void Wrapper::setController(std::shared_ptr<IRealDeviceController> newController) {
-    controller = newController;
+void Wrapper::setRealDeviceController(std::shared_ptr<IRealDeviceController> newController) {
+    realDeviceController = std::move(newController);
 }
 
-const std::shared_ptr<IRealDeviceController> &Wrapper::getController() {
-    return controller;
+void Wrapper::setVirtualSensorController(std::shared_ptr<IVirtualSensorController> newController) {
+    virtualSensorController = std::move(newController);
 }

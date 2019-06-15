@@ -15,7 +15,7 @@
 
 class VirtualSensorController : public IVirtualSensorController {
 public:
-    VirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : IVirtualSensorController(std::move(dm)) {};
+    VirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : IVirtualSensorController(dm) {};
 
     void setAllSensorValues() override;
 
