@@ -52,5 +52,5 @@ void Wrapper::setVirtualMotorController(std::shared_ptr<IVirtualMotorController>
 }
 
 void Wrapper::motorSetVelocity(WbDeviceTag tag, double velocity) {
-    virtualMotorController->wbr_motor_set_velocity(tag, velocity);
+    virtualMotorController->setVelocity(tag, velocity);
 }
