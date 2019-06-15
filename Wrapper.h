@@ -17,6 +17,8 @@ public:
 
     static void setVirtualSensorController(std::shared_ptr<IVirtualSensorController> newController);
 
+    static void setVirtualMotorController(std::shared_ptr<IVirtualMotorController> newController);
+
     static bool start(void *arg);
 
     static void stop();
@@ -26,6 +28,8 @@ public:
     static void stopActuators();
 
     static int robotStep(int period);
+
+    static void motorSetVelocity(WbDeviceTag tag, double velocity);
 
 protected:
     static std::shared_ptr<IRealDeviceController> realDeviceController;

@@ -39,12 +39,15 @@ bool wbr_init(WbrInterface *ri) {
 
     Wrapper::setRealDeviceController(realDeviceComposite);
     Wrapper::setVirtualSensorController(std::make_shared<VirtualSensorController>(deviceManager));
+    Wrapper::setVirtualMotorController(motorController);
 
     ri->mandatory.wbr_start = Wrapper::start;
     ri->mandatory.wbr_has_failed = Wrapper::hasFailed;
     ri->mandatory.wbr_robot_step = Wrapper::robotStep;
     ri->mandatory.wbr_stop = Wrapper::stop;
     ri->mandatory.wbr_stop_actuators = Wrapper::stopActuators;
+
+    ri->wbr_motor_set_velocity = Wrapper::motorSetVelocity;
 
     return true;
 }
