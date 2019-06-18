@@ -137,6 +137,25 @@ int AriaController::robotStep(int period) {
         ArLog::log(ArLog::Normal, "Motors were not enabled");
     }
 
+    // read bumper values
+    int myBumpMask = (ArUtil::BIT1 | ArUtil::BIT2 | ArUtil::BIT3 | ArUtil::BIT4 |
+                      ArUtil::BIT5 | ArUtil::BIT6 | ArUtil::BIT7 | ArUtil::BIT8);
+    int frontBump;
+    int rearBump;
+
+    if (realRobot.hasFrontBumpers())
+        frontBump = ((realRobot.getStallValue() & 0xff00) >> 8) & myBumpMask;
+    else
+        frontBump = 0;
+    if (realRobot.hasRearBumpers())
+        rearBump = (realRobot.getStallValue() & 0xff) & myBumpMask;
+    else
+        rearBump = 0;
+
+    // print bumper values
+    std::cout << std::endl << std::endl << "Front Bumpers: " << frontBump;
+    std::cout << std::endl << "Rear Bumpers: " << rearBump << std::endl << std::endl;
+
     if (realRobot.areSonarsEnabled()) {
         // In the order of right to left having frontal vision on the realRobot
 
