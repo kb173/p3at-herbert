@@ -12,9 +12,9 @@
 /// These functions should be mapped to the incoming WeBots calls.
 class IVirtualSensorController {
 public:
-    IVirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : deviceManager(std::move(dm)) {};
+    explicit IVirtualSensorController(std::shared_ptr<IVirtualDeviceManager> dm) : deviceManager(std::move(dm)) {};
 
-    ///sets all sensor values in webots
+    /// sets all sensor values in webots
     virtual void setAllSensorValues() = 0;
 
     virtual ~IVirtualSensorController() = default;

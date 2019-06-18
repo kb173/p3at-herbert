@@ -50,7 +50,7 @@ bool AriaController::start(void *arg) {
     realRobot.addRangeDevice(&sonarInitializer2);
 
     // TODO: Check if this is really needed?
-    if(!sonarConnector->connectSonars()) {
+    if (!sonarConnector->connectSonars()) {
         ArLog::log(ArLog::Normal, "Could not connect to sonar sensors");
         Aria::logOptions();
         Aria::exit(3);
@@ -72,7 +72,9 @@ bool AriaController::start(void *arg) {
 
     realSonar = std::shared_ptr<ArRangeDevice>(realRobot.findRangeDevice("sonar"));
 
-    return 0;
+    std::cout << "Aria init done!" << std::endl;
+
+    return true;
 }
 
 void AriaController::stop() {
@@ -127,15 +129,26 @@ int AriaController::robotStep(int period) {
         std::ostringstream oss, oss2;
         oss << velocityLeft;
         oss2 << velocityRight;
-        logMessage = "Motors running line with velocity of " + oss.str() + "m/s on left wheel"
-                                                                           "and velocity of " + oss2.str() +
-                     "m/s on right wheel";
-        ArLog::log(ArLog::Normal, logMessage.c_str());
 
         realRobot.setVel2(velocityLeft, velocityRight);
     } else {
         ArLog::log(ArLog::Normal, "Motors were not enabled");
     }
+
+    // read bumper values
+    int myBumpMask = (ArUtil::BIT1 | ArUtil::BIT2 | ArUtil::BIT3 | ArUtil::BIT4 |
+                      ArUtil::BIT5 | ArUtil::BIT6 | ArUtil::BIT7 | ArUtil::BIT8);
+    int frontBump;
+    int rearBump;
+
+    if (realRobot.hasFrontBumpers())
+        frontBump = ((realRobot.getStallValue() & 0xff00) >> 8) & myBumpMask;
+    else
+        frontBump = 0;
+    if (realRobot.hasRearBumpers())
+        rearBump = (realRobot.getStallValue() & 0xff) & myBumpMask;
+    else
+        rearBump = 0;
 
     if (realRobot.areSonarsEnabled()) {
         // In the order of right to left having frontal vision on the realRobot
@@ -160,10 +173,6 @@ int AriaController::robotStep(int period) {
         if (realSonar != nullptr) {
             auto virtualFrontSonarVector = virtualRobot->getFrontSonarArray();
             auto virtualBackSonarVector = virtualRobot->getBackSonarArray();
-
-            for (int i = 0; i < 16; i++) {
-                std::cout << realRobot.getSonarRange(i) << std::endl;
-            }
 
             for (int i = 0; i < 8; i++) {
                 std::dynamic_pointer_cast<ISensor>(virtualFrontSonarVector[i])->setValue(realRobot.getSonarRange(i));
@@ -204,7 +213,8 @@ int AriaController::robotStep(int period) {
     return deltaTime;
 }
 
-void AriaController::fillSonarDevices(std::vector<std::shared_ptr<IDevice>> &virtualSonarVector, double startAngle, int multiplier) {
+void AriaController::fillSonarDevices(std::vector<std::shared_ptr<IDevice>> &virtualSonarVector, double startAngle,
+                                      int multiplier) {
     double currentAngle = startAngle;
     double angleSize = (double) 180 / virtualSonarVector.size();
 

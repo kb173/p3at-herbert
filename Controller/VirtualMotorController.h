@@ -14,11 +14,11 @@ class VirtualMotorController : public IVirtualMotorController {
 public:
     VirtualMotorController(std::shared_ptr<IVirtualDeviceManager> dm) : IVirtualMotorController(std::move(dm)) {};
 
-    void wbr_motor_set_position(WbDeviceTag tag, double position) override;
+    void setPosition(WbDeviceTag tag, double position) override;
 
-    void wbr_motor_set_acceleration(WbDeviceTag tag, double acceleration) override;
+    void setAcceleration(WbDeviceTag tag, double acceleration) override;
 
-    void wbr_motor_set_velocity(WbDeviceTag tag, double velocity) override;
+    void setVelocity(WbDeviceTag tag, double velocity) override;
 
 };
 
