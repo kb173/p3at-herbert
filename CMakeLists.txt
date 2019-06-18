@@ -73,6 +73,8 @@ function(DisableCompilingPlatformSpecificSources file_list)
     endforeach ()
 endfunction()
 
+include_directories(Aria/include)
+
 file(GLOB_RECURSE source_files
         "Aria/src/*.cpp"
         )
@@ -93,7 +95,6 @@ add_executable(real_robot_test
 
 target_link_libraries(tests ${CMAKE_DL_LIBS})
 target_link_libraries(real_robot_test ${CMAKE_DL_LIBS})
-include_directories(Aria/include)
 include_directories(Catch2/single_include/catch2)
 include_directories(${WEBOTS_INCLUDE})
 include_directories(webots/include)
